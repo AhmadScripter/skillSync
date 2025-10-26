@@ -1,0 +1,20 @@
+.card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.badge {
+  font-size: 0.75rem;
+}
+
+button {
+  border-radius: 8px;
+}
+
+.progress {
+  border-radius: 8px;
+}

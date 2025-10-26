@@ -1,0 +1,8 @@
+footer a:hover {
+  text-decoration: underline;
+}
+
+.logo {
+  width: 200px;
+  filter: invert();
+}

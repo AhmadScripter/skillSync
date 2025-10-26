@@ -1,0 +1,76 @@
+<div class="container-fluid">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="fw-bold">Manage Jobs</h4>
+  </div>
+
+  <!-- Add/Edit Form -->
+  <div class="card shadow-sm p-3 mb-4">
+    <h5 class="mb-3">{{ isEditing ? 'Edit Job' : 'Add New Job' }}</h5>
+    <form (ngSubmit)="addJob()">
+      <div class="row g-3">
+        <div class="col-md-3">
+          <input type="text" class="form-control" placeholder="Job Title" [(ngModel)]="newJob.title" name="title"
+            required />
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control" placeholder="Company" [(ngModel)]="newJob.company" name="company"
+            required />
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control" placeholder="Location" [(ngModel)]="newJob.location"
+            name="location" />
+        </div>
+        <div class="col-md-2">
+          <select class="form-select" [(ngModel)]="newJob.type" name="type">
+            <option value="">Select Type</option>
+            <option>Full-time</option>
+            <option>Part-time</option>
+            <option>Remote</option>
+            <option>Contract</option>
+          </select>
+        </div>
+        <div class="col-md-1 d-flex align-items-center">
+          <button type="submit" class="btn btn-primary w-100">{{ isEditing ? 'Update' : 'Add' }}</button>
+        </div>
+      </div>
+    </form>
+
+    <div *ngIf="isEditing" class="text-end mt-2">
+      <button class="btn btn-sm btn-outline-secondary" (click)="cancelEdit()">Cancel Edit</button>
+    </div>
+  </div>
+
+  <!-- Jobs Table -->
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <table class="table table-bordered align-middle text-center">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Company</th>
+            <th>Location</th>
+            <th>Type</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let job of jobs; index as i">
+            <td>{{ job.id }}</td>
+            <td>{{ job.title }}</td>
+            <td>{{ job.company }}</td>
+            <td>{{ job.location }}</td>
+            <td>{{ job.type }}</td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary me-2" (click)="editJob(i)">Edit</button>
+              <button class="btn btn-sm btn-outline-danger" (click)="deleteJob(i)">Delete</button>
+            </td>
+          </tr>
+          <tr *ngIf="jobs.length === 0">
+            <td colspan="6" class="text-muted">No jobs found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

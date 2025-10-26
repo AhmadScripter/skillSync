@@ -1,0 +1,71 @@
+<div class="container-fluid">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="fw-bold">Manage Candidates</h4>
+  </div>
+
+  <!-- Add/Edit Form -->
+  <div class="card shadow-sm p-3 mb-4">
+    <h5 class="mb-3">{{ isEditing ? 'Edit Candidate' : 'Add New Candidate' }}</h5>
+    <form (ngSubmit)="addCandidate()">
+      <div class="row g-3">
+        <div class="col-md-3">
+          <input type="text" class="form-control" placeholder="Name" [(ngModel)]="newCandidate.name" name="name"
+            required />
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control" placeholder="Role" [(ngModel)]="newCandidate.role" name="role"
+            required />
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control" placeholder="Experience" [(ngModel)]="newCandidate.experience"
+            name="experience" />
+        </div>
+        <div class="col-md-2">
+          <input type="text" class="form-control" placeholder="Skills" [(ngModel)]="newCandidate.skills"
+            name="skills" />
+        </div>
+        <div class="col-md-1 d-flex align-items-center">
+          <button type="submit" class="btn btn-primary w-100">{{ isEditing ? 'Update' : 'Add' }}</button>
+        </div>
+      </div>
+    </form>
+
+    <div *ngIf="isEditing" class="text-end mt-2">
+      <button class="btn btn-sm btn-outline-secondary" (click)="cancelEdit()">Cancel Edit</button>
+    </div>
+  </div>
+
+  <!-- Candidates Table -->
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <table class="table table-bordered align-middle text-center">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Experience</th>
+            <th>Skills</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let candidate of candidates; index as i">
+            <td>{{ candidate.id }}</td>
+            <td>{{ candidate.name }}</td>
+            <td>{{ candidate.role }}</td>
+            <td>{{ candidate.experience }}</td>
+            <td>{{ candidate.skills }}</td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary me-2" (click)="editCandidate(i)">Edit</button>
+              <button class="btn btn-sm btn-outline-danger" (click)="deleteCandidate(i)">Delete</button>
+            </td>
+          </tr>
+          <tr *ngIf="candidates.length === 0">
+            <td colspan="6" class="text-muted">No candidates found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

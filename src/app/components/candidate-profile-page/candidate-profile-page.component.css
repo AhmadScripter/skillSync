@@ -1,0 +1,15 @@
+.card {
+  border-radius: 10px;
+}
+
+.badge {
+  font-size: 0.8rem;
+}
+
+button {
+  border-radius: 8px;
+}
+
+.progress {
+  border-radius: 8px;
+}
