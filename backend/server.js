@@ -7,6 +7,7 @@ const dotenv = require('dotenv');
 const jobRoutes = require('./routes/jobRoutes');
 const recruiterRoutes = require('./routes/recruiterRoutes');
 const candidateRoutes = require('./routes/candidateRoutes');
+const matchRoutes = require('./routes/matchRoutes');
 
 const app = express();
 dotenv.config();
@@ -28,6 +29,7 @@ app.use(cors(corsOptions));
 app.use("/api/jobs", jobRoutes);
 app.use('/api/recruiter', recruiterRoutes);
 app.use("/api/candidates", candidateRoutes);
+app.use('/api/match', matchRoutes);
 
 app.get('/', (req, res) => res.send('SkillSync API running...'));
 

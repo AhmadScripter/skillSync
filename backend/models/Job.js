@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const jobSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: String,
-  skills: [String], // e.g., ['Angular', 'Node.js', 'MongoDB']
+  skills: [String],
   experience: String,
   location: String,
   salaryRange: String,
-  postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'Recruiter' }, // link to recruiter
+  postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'Recruiter' },
   createdAt: { type: Date, default: Date.now }
 });
 
